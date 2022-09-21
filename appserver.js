@@ -23,6 +23,12 @@ router.get( "/products" , (yeucau, trave) => {
     trave.send(pageContent);
 });
 
+router.get( "/products" , (yeucau, trave) => {
+    data = fs.readFileSync("html/login.html");
+    pageContent = data.toString();
+    trave.send(pageContent);
+});
+
 
 // -------------------------
 
