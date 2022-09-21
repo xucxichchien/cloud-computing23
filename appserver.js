@@ -22,24 +22,16 @@ router.use( (loixayra, yeucau, trave, ketiep) => {
 
 // ------------------- Routing
 router.get( "/" , (yeucau, trave) => {
-    data = fs.readFileSync("./html/main.html");
+    data = fs.readFileSync("html/main.html");
     pageContent = data.toString();
     trave.send(pageContent);
 });
 
 router.get( "/home" , (yeucau, trave) => {
-    data = fs.readFileSync("./html/home.html");
+    data = fs.readFileSync("html/home.html");
     pageContent = data.toString();
     trave.send(pageContent);
 });
-
-router.get( "/login" , (yeucau, trave) => {
-    data = fs.readFileSync("./html/login.html");
-    pageContent = data.toString();
-    trave.send(pageContent);
-});
-
-
 
 
 //--- Add middleware
@@ -52,9 +44,10 @@ appServer.use(bodyParser.json());
 appServer.use("/", router);
 
 const ProductRouter = require("./controller/productController").ProductRouter;
-
 appServer.use("/products", ProductRouter);
 
+const LoginRouter = require("./controller/loginController").LoginRouter;
+appServer.use("/login", LoginRouter);
 
 // ----------- RUN / Launching !!! 
 appServer.listen( PORT );
